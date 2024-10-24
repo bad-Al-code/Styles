@@ -2,11 +2,30 @@
 *::after,
 *::before {
     box-sizing: border-box;
+    color: gold;
 }
 
-p {
-    box-sizing: border-box;
-    width: 200px;
-    border: 10px solid;
-    padding: 10px;
+article p:first-of-type {
+    color: red;
+    font-size: 1.5em;
+}
+
+.my-class {
+    color: red;
+}
+
+#rad {
+    border: 1px solid blue;
+}
+
+[data-type="primary"] {
+    color: red;
+}
+
+[data-type] {
+    color: rosybrown;
+}
+
+p strong {
+    color: blue;
 }
