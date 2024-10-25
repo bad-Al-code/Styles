@@ -9,6 +9,31 @@ html {
     height: 100%;
 }
 
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 20px;
+    border-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1em;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
 .hero {
     background-image: url("https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ1VLYx7mDxNSYBhTEcuNPUfrgfj7RZlGkVe4PQQT-Zu8CzoiX9Jf6nDrTBmwUxfFzCCsrkou1OUR0vida7Q8jE6FQQ_C-itJgbqs_4p7yR");
     background-size: cover;
@@ -70,6 +95,9 @@ p {
 
 .cta-button:hover {
     background-color: #ff5500;
+
+    transform: rotate(60deg);
+    transition: transform 0.3s ease;
 }
 
 .chips {
