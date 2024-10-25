@@ -1,53 +1,87 @@
-*,
-*::after,
-*::before {
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-article p:first-of-type {
-    color: red;
-    font-size: 1.5em;
+body,
+html {
+    height: 100%;
 }
 
-.my-class {
-    color: red;
-}
-
-#rad {
-    border: 1px solid blue;
-}
-
-[data-type="primary"] {
-    color: red;
-}
-
-[data-type] {
-    color: rosybrown;
-}
-
-p strong {
-    color: blue;
-}
-
-button {
-    color: red;
-}
-.branding {
-    color: blue;
-}
-
-.my-button {
-    display: inline-block;
-    padding: 10px;
-    text-decoration: none;
+.hero {
+    background-image: url("https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ1VLYx7mDxNSYBhTEcuNPUfrgfj7RZlGkVe4PQQT-Zu8CzoiX9Jf6nDrTBmwUxfFzCCsrkou1OUR0vida7Q8jE6FQQ_C-itJgbqs_4p7yR");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    background: rgb(231, 152, 4);
-    font: inherit;
     text-align: center;
-    border-radius: 0.5rem;
 }
 
-article p {
-    font-style: italic;
-    background: cyan;
+.content {
+    position: relative;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1;
+    color: white;
+}
+
+.content::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    left: -5px;
+    bottom: -5px;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: -1;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ff5500;
+}
+
+.chips {
+    margin-top: 20px;
+}
+
+.chip {
+    background-color: rgba(165, 165, 165, 0.4);
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 0.9em;
+    display: inline-block;
+    margin: 5px;
+    backdrop-filter: blur(20px);
 }
