@@ -2,7 +2,6 @@
 *::after,
 *::before {
     box-sizing: border-box;
-    color: gold;
 }
 
 article p:first-of-type {
@@ -28,4 +27,27 @@ article p:first-of-type {
 
 p strong {
     color: blue;
+}
+
+button {
+    color: red;
+}
+.branding {
+    color: blue;
+}
+
+.my-button {
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background: rgb(231, 152, 4);
+    font: inherit;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+article p {
+    font-style: italic;
+    background: cyan;
 }
