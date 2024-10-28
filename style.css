@@ -1,173 +1,105 @@
+@import "https://unpkg.com/open-props/easings.min.css";
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body {
-    min-height: 100vh;
+body,
+html {
+    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-        Noto Sans, sans-serif;
-    background: #444; /* Dark gray for a sophisticated backdrop */
-    color: #f0f0f0; /* Light text color for better contrast */
+    align-items: center;
+    font-family: sans-serif;
+    transition: background-color 0.5s ease;
 }
 
-/* General styling for the stack */
-.stack {
-    display: grid;
-    grid: [stack] / [stack];
-    perspective: 5000px;
+[data-theme="light"] {
+    background-color: #f3f4f6; /* Light background */
+    color: #111827;
 }
 
-.stack:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #eaeaea;
-    transition: background 2s ease;
-    pointer-events: none;
+[data-theme="dark"] {
+    background-color: #111827; /* Dark background */
+    color: #f3f4f6;
 }
 
-.stack:hover:before,
-.stack:active:before {
-    background: #262626;
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-/* Individual card styles with hover effects */
-.card {
-    grid-area: stack;
-    width: 40vmin;
-    height: 40vmin;
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.05);
-    position: relative;
-    color: #333; /* Text color for better readability */
-    transition: transform 4s ease;
-    text-align: center;
-    padding: 1.5rem;
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+    transform-origin: center;
 }
 
-/* Media queries for responsive card dimensions */
-@media (orientation: landscape) {
-    .card {
-        width: 40vh;
-        height: 40vh;
-    }
+.sun-and-moon > :is(.moon, .sun) {
+    fill: var(--icon-fill);
 }
 
-@media (max-width: 540px) {
-    .card {
-        width: 60vw;
-        height: 60vw;
-    }
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+    fill: var(--icon-fill-hover);
 }
 
-/* Card-specific styles for each layer */
-.card.content {
-    z-index: 5;
-    background: #f7f7f7;
-    border: 4px solid #6b8e23; /* Olive green border */
-    color: #222;
-    font-size: max(2.5vmin, 1rem);
-    line-height: 1.5;
-    transition: all 1.5s ease;
+.sun-and-moon > .sub-beams {
+    stroke: var(--icon-fill);
+    stroke-width: 2px;
 }
 
-.card.padding {
-    background: transparent;
-    z-index: 4;
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sub-beams {
+    stroke: var(--icon-fill-hover);
 }
 
-.card.border {
-    background: transparent;
-    z-index: 3;
-    border: 4px solid #6b8e23; /* Olive border */
+[data-theme="dark"] .sun-and-moon > .sun {
+    transform: scale(1.75);
 }
 
-.card.background {
-    background: #f7f7f7;
-    z-index: 2;
-    transition: all 2s ease;
-}
-
-.card.box-shadow {
-    background: transparent;
-    z-index: 1;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Hover and transition effects */
-.stack:hover .card,
-.stack:active .card {
-    transition-duration: 2s;
-    transform: rotateX(45deg) rotate(45deg) translateZ(var(--z-offset))
-        translateY(20vh) translateX(20vh);
-}
-
-.stack:hover .card:nth-child(1),
-.stack:active .card:nth-child(1) {
-    --z-offset: 75vh;
-}
-
-.stack:hover .card:nth-child(2),
-.stack:active .card:nth-child(2) {
-    --z-offset: 50vh;
-}
-
-.stack:hover .card:nth-child(3),
-.stack:active .card:nth-child(3) {
-    --z-offset: 25vh;
-}
-
-.stack:hover .card:nth-child(4),
-.stack:active .card:nth-child(4) {
-    --z-offset: 0vh;
-}
-
-.stack:hover .card:nth-child(5),
-.stack:active .card:nth-child(5) {
-    --z-offset: -25vh;
-}
-
-/* Pseudo-element styling for hover effects */
-.card::after {
-    content: attr(data-hover-text);
-    position: absolute;
-    left: -45%;
-    top: 110%;
-    font-size: 1.25rem;
-    color: #eaeaea;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
-    white-space: nowrap;
-    padding: 1ch 2ch;
-    border-radius: 4ch;
+[data-theme="dark"] .sun-and-moon > .sun-beams {
     opacity: 0;
-    transform: rotate(-45deg) rotateY(45deg) translateX(20px);
-    transition: opacity 0.5s ease 0s, transform 0.5s ease;
-    background: rgba(0, 0, 0, 0.7);
 }
 
-.stack:hover .card::after,
-.stack:active .card::after {
-    opacity: 1;
-    transform: rotate(-45deg) rotateY(45deg) translateX(0px);
+[data-theme="dark"] .sun-and-moon > .moon > circle {
+    transform: translateX(-7px);
 }
 
-/* Accessibility and mobile styling */
-@media (hover: hover) {
-    #mobile-prompt {
-        display: none;
+@media (prefers-reduced-motion: no-preference) {
+    .sun-and-moon > .sun {
+        transition: transform 0.5s var(--ease-elastic-3);
     }
-}
 
-@media (hover: none) {
-    #desktop-prompt {
-        display: none;
+    .sun-and-moon > .sun-beams {
+        transition: transform 0.5s var(--ease-elastic-4),
+            opacity 0.5s var(--ease-3);
+    }
+
+    .sun-and-moon .moon > circle {
+        transition: transform 0.25s var(--ease-out-5);
+    }
+
+    @supports (cx: 1) {
+        .sun-and-moon .moon > circle {
+            transition: cx 0.25s var(--ease-out-5);
+        }
+    }
+
+    [data-theme="dark"] .sun-and-moon > .sun {
+        transition-timing-function: var(--ease-3);
+        transition-duration: 0.25s;
+        transform: scale(1.75);
+    }
+
+    [data-theme="dark"] .sun-and-moon > .sun-beams {
+        transition-duration: 0.15s;
+        transform: rotateZ(-25deg);
+    }
+
+    [data-theme="dark"] .sun-and-moon > .moon > circle {
+        transition-duration: 0.5s;
+        transition-delay: 0.25s;
     }
 }
